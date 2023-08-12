@@ -1,0 +1,91 @@
+<head>
+
+  <title>Status Bot</title>
+
+</head>
+
+<div class="content content-page">
+  <div class="container-fluid">
+      {{!-- Titulo pagina --}}
+      <div class="row">
+          <div class="col-12">
+              <div class="page-title-box">
+                  <h4 class="page-title">Status Bot</h4>
+              </div>
+          </div>
+      </div>     
+      {{!-- Fin Titulo pagina --}}
+
+      <div class="row">
+             <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        {{!-- Tabla Status --}}
+                        <div class="table-responsive">
+                            <table id="Reporte_Status" class="table table-striped dt-responsive nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th><center>ID</center></th>
+                                        <th><center>PROCESO</center></th>
+                                        <th><center>USUARIO INFOBIP</center></th>
+                                        <th><center>NOMBRE ARCHIVO</center></th>
+                                        <th><center>ARCHIVO CARGADO</center></th>
+                                        <th><center>CANTIDAD REGISTROS</center></th>
+                                        <th><center>FECHA REGISTRO</center></th>
+                                        <th><center>SEGUIMIENTO</center></th>
+                                        <th><center>FECHA SEGUIMIENTO</center></th>
+                                        <th><center>ARCHIVO RESULTANTE</center></th>
+                                        <th><center>FECHA MODIFICACIÓN</center></th>
+                                        <th><center>RESPONSABLE</center></th>
+                                        <th><center>CARGO</center></th>
+                                        <th><center>ESTADO</center></th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each users}}
+                                    <tr>
+                                        <td><center>{{PKSTA_NCODIGO}}</center></td>
+                                        <td><center>{{STA_CNOMBRE_PROCESO}}</center></td>
+                                        <td><center>{{STA_CUSUARIO_INFOBIP}}</center></td>
+                                        <td><center>{{STA_CNOMBRE_ARCHIVO}}</center></td>
+                                        <td>
+                                            <center>
+                                            {{#if (existeAdjunto STA_CARCHIVO_CARGADO)}}
+                                                <a href='{{STA_CARCHIVO_CARGADO}}' download><i class="fas fa-download"></i></a>
+                                            {{else}}
+                                                Sin adjuntos
+                                            {{/if}}
+                                            </center>
+                                        </td>
+                                        <td><center>{{STA_CCANTIDAD_REGISTROS}}</center></td>
+                                        <td><center>{{STA_CFECHA_REGISTRO}}</center></td>
+                                        <td><center>{{STA_CREQ_SEGUIMIENTO}}</center></td>
+                                        <td><center>{{STA_CFECHA_SEGUIMIENTO}}</center>
+                                        <td>
+                                            <center>
+                                            {{#if (isNA STA_CARCHIVO_RESULTANTE)}}
+                                                N/A
+                                            {{else }}
+                                                <a href='{{STA_CARCHIVO_RESULTANTE}}' download><i class="fas fa-download"></i></a>
+                                            {{/if}}
+                                            </center>
+                                        </td>
+                                        <td><center>{{STA_CFECHA_MODIFICACION}}</center></td>                                     
+                                        <td><center>{{STA_CRESPONSABLE}}</center></td>
+                                        <td><center>{{STA_CCARGO}}</center></td>                                        
+                                        <td><center>{{STA_CESTADO}}</center></td>   
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        {{!-- Fin Tabla Status --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/reporting/datatable_status.js"></script>
